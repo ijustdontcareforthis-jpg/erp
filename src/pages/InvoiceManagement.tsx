@@ -161,7 +161,7 @@ const InvoiceManagement: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <PageHeader
         title="Invoice Management"
         description="Manage all your invoices and billing"
@@ -178,7 +178,7 @@ const InvoiceManagement: React.FC = () => {
       <StatsGrid stats={statsData} />
 
       <Card>
-        <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between">
           <div className="relative flex-1 max-w-md">
             <Input
               type="text"
@@ -190,7 +190,7 @@ const InvoiceManagement: React.FC = () => {
             />
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <Select
               options={statusOptions}
               value={statusFilter}
@@ -217,15 +217,15 @@ const InvoiceManagement: React.FC = () => {
       </Card>
 
       <Card padding="none">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Invoices</h3>
-            <div className="flex items-center space-x-2">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900">Invoices</h3>
+            <div className="flex items-center space-x-1 sm:space-x-2">
               <Button variant="outline" size="sm" icon={Download}>
-                Export
+                <span className="hidden sm:inline">Export</span>
               </Button>
               <Button variant="outline" size="sm" icon={Columns}>
-                Columns
+                <span className="hidden sm:inline">Columns</span>
               </Button>
             </div>
           </div>
@@ -239,25 +239,25 @@ const InvoiceManagement: React.FC = () => {
           onEdit={(invoice) => console.log('Edit invoice:', invoice)}
         />
 
-        <div className="px-6 py-4 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-700">
+        <div className="px-4 sm:px-6 py-4 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="text-xs sm:text-sm text-gray-700">
               Showing 1 to 5 of 1,247 results
             </div>
-            <div className="flex items-center space-x-2">
-              <button className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
                 Previous
               </button>
-              <button className="px-3 py-1 text-sm bg-blue-600 text-white rounded">
+              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-blue-600 text-white rounded">
                 1
               </button>
-              <button className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
                 2
               </button>
-              <button className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
                 3
               </button>
-              <button className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
                 Next
               </button>
             </div>

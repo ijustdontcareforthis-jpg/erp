@@ -70,12 +70,12 @@ const DataTable: React.FC<DataTableProps> = ({
   }, [data, sortColumn, sortDirection]);
 
   return (
-    <div className={`overflow-x-auto ${className}`}>
+    <div className={`overflow-x-auto -mx-4 sm:mx-0 ${className}`}>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
             {selectable && (
-              <th className="px-6 py-3 text-left">
+              <th className="px-3 sm:px-6 py-3 text-left">
                 <input
                   type="checkbox"
                   className="rounded border-gray-300"
@@ -87,7 +87,7 @@ const DataTable: React.FC<DataTableProps> = ({
             {columns.map((column) => (
               <th
                 key={column.key}
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
                 {column.sortable ? (
                   <button
@@ -121,7 +121,7 @@ const DataTable: React.FC<DataTableProps> = ({
           {sortedData.map((item, index) => (
             <tr key={item.id || index} className="hover:bg-gray-50">
               {selectable && (
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                   <input
                     type="checkbox"
                     className="rounded border-gray-300"
@@ -131,7 +131,7 @@ const DataTable: React.FC<DataTableProps> = ({
                 </td>
               )}
               {columns.map((column) => (
-                <td key={column.key} className="px-6 py-4 whitespace-nowrap">
+                <td key={column.key} className="px-3 sm:px-6 py-3 sm:py-4">
                   {column.render ? (
                     column.render(item[column.key], item)
                   ) : column.key === 'status' ? (
@@ -139,20 +139,20 @@ const DataTable: React.FC<DataTableProps> = ({
                       {item[column.key]}
                     </Badge>
                   ) : (
-                    <div className="text-sm text-gray-900">{item[column.key]}</div>
+                    <div className="text-xs sm:text-sm text-gray-900 truncate max-w-xs">{item[column.key]}</div>
                   )}
                 </td>
               ))}
               {showActions && (
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <div className="flex items-center space-x-2">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-medium">
+                  <div className="flex items-center space-x-1 sm:space-x-2">
                     {onView && (
                       <Button
                         variant="ghost"
                         size="sm"
                         icon={Eye}
                         onClick={() => onView(item)}
-                        className="p-1"
+                        className="p-1 sm:p-2"
                       />
                     )}
                     {onEdit && (
@@ -161,14 +161,14 @@ const DataTable: React.FC<DataTableProps> = ({
                         size="sm"
                         icon={Edit}
                         onClick={() => onEdit(item)}
-                        className="p-1"
+                        className="p-1 sm:p-2"
                       />
                     )}
                     <Button
                       variant="ghost"
                       size="sm"
                       icon={MoreHorizontal}
-                      className="p-1"
+                      className="p-1 sm:p-2"
                     />
                   </div>
                 </td>
