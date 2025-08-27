@@ -27,13 +27,13 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, isOpen, onToggle, onClose 
       isOpen ? 'w-64 translate-x-0' : 'w-64 -translate-x-full lg:translate-x-0'
     }`}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-700">
+      <div className="flex items-center justify-between p-3 sm:p-4 border-b border-slate-700">
         {(!collapsed || isOpen) && (
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xs sm:text-sm">
               ERP
             </div>
-            <span className="ml-2 text-lg font-semibold">System</span>
+            <span className="ml-2 text-base sm:text-lg font-semibold">System</span>
           </div>
         )}
         <div className="flex items-center space-x-2">
@@ -42,31 +42,31 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, isOpen, onToggle, onClose 
             onClick={onClose}
             className="lg:hidden p-1 rounded-md hover:bg-slate-700 transition-colors"
           >
-            <ChevronLeft size={16} />
+            <ChevronLeft size={14} className="sm:w-4 sm:h-4" />
           </button>
           {/* Toggle button for desktop */}
           <button
             onClick={onToggle}
             className="hidden lg:block p-1 rounded-md hover:bg-slate-700 transition-colors"
           >
-            {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+            {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
           </button>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="mt-6">
+      <nav className="mt-4 sm:mt-6 overflow-y-auto h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)]">
         {NAVIGATION_ITEMS.map((section) => (
           <div key={section.section}>
-            <div className="px-3 mt-6 first:mt-0">
+            <div className="px-3 mt-4 sm:mt-6 first:mt-0">
               {(!collapsed || isOpen) && (
-                <p className="text-xs text-slate-400 uppercase tracking-wider mb-3">
+                <p className="text-xs text-slate-400 uppercase tracking-wider mb-2 sm:mb-3">
                   {section.section}
                 </p>
               )}
             </div>
             
-            <ul className="space-y-1 px-3">
+            <ul className="space-y-0.5 sm:space-y-1 px-3">
               {section.items.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.path;
@@ -76,15 +76,15 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, isOpen, onToggle, onClose 
                     <Link
                       to={item.path}
                       onClick={handleLinkClick}
-                      className={`flex items-center px-3 py-2 rounded-lg transition-colors ${
+                      className={`flex items-center px-2 sm:px-3 py-1.5 sm:py-2 rounded-md sm:rounded-lg transition-colors ${
                         isActive
                           ? 'bg-blue-600 text-white'
                           : 'text-slate-300 hover:bg-slate-700 hover:text-white'
                       }`}
                       title={(collapsed && !isOpen) ? item.name : undefined}
                     >
-                      <Icon size={18} />
-                      {(!collapsed || isOpen) && <span className="ml-3 text-sm">{item.name}</span>}
+                      <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
+                      {(!collapsed || isOpen) && <span className="ml-2 sm:ml-3 text-xs sm:text-sm">{item.name}</span>}
                     </Link>
                   </li>
                 );

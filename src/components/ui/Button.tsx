@@ -33,15 +33,15 @@ const Button: React.FC<ButtonProps> = ({
   };
   
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base'
+    sm: 'px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm',
+    md: 'px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm',
+    lg: 'px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base'
   };
   
   const iconSize = {
-    sm: 14,
-    md: 16,
-    lg: 18
+    sm: 12,
+    md: 14,
+    lg: 16
   };
 
   const classes = `
@@ -59,12 +59,12 @@ const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {loading ? (
-        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2" />
+        <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-current mr-1 sm:mr-2" />
       ) : (
-        Icon && iconPosition === 'left' && <Icon size={iconSize[size]} className="mr-2" />
+        Icon && iconPosition === 'left' && <Icon size={iconSize[size]} className="mr-1 sm:mr-2" />
       )}
       {children}
-      {Icon && iconPosition === 'right' && !loading && <Icon size={iconSize[size]} className="ml-2" />}
+      {Icon && iconPosition === 'right' && !loading && <Icon size={iconSize[size]} className="ml-1 sm:ml-2" />}
     </button>
   );
 };

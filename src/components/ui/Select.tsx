@@ -23,7 +23,7 @@ const Select: React.FC<SelectProps> = ({
   const widthClasses = fullWidth ? 'w-full' : '';
   
   const selectClasses = `
-    px-3 py-2 text-sm bg-white
+    px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm bg-white
     ${baseClasses}
     ${errorClasses}
     ${widthClasses}
@@ -33,7 +33,7 @@ const Select: React.FC<SelectProps> = ({
   return (
     <div className={fullWidth ? 'w-full' : ''}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
           {label}
         </label>
       )}
@@ -48,7 +48,7 @@ const Select: React.FC<SelectProps> = ({
         ))}
       </select>
       {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
+        <p className="mt-1 text-xs sm:text-sm text-red-600">{error}</p>
       )}
     </div>
   );

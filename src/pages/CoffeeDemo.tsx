@@ -209,20 +209,20 @@ export default function CoffeeDemo() {
 
         <div className="p-6">
           {/* Search and Filters */}
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-6">
+          <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 items-stretch lg:items-center justify-between mb-4 sm:mb-6">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
               <input
                 type="text"
                 placeholder="Search coffees..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:flex-shrink-0">
               <select 
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
               >
@@ -232,9 +232,9 @@ export default function CoffeeDemo() {
                   </option>
                 ))}
               </select>
-              <button className="flex items-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button className="flex items-center justify-center px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                 <Filter size={16} className="mr-2 text-gray-600" />
-                <span className="text-sm">More Filters</span>
+                <span className="text-sm whitespace-nowrap">More Filters</span>
               </button>
             </div>
           </div>

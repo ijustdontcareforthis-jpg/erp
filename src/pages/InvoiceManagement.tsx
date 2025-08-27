@@ -178,7 +178,7 @@ const InvoiceManagement: React.FC = () => {
       <StatsGrid stats={statsData} />
 
       <Card>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between">
+        <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 items-stretch lg:items-center justify-between">
           <div className="relative flex-1 max-w-md">
             <Input
               type="text"
@@ -190,7 +190,7 @@ const InvoiceManagement: React.FC = () => {
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:flex-shrink-0">
             <Select
               options={statusOptions}
               value={statusFilter}
@@ -210,16 +210,17 @@ const InvoiceManagement: React.FC = () => {
             />
 
             <Button variant="outline" icon={Filter}>
-              Apply Filters
+              <span className="hidden sm:inline">Apply Filters</span>
+              <span className="sm:hidden">Filter</span>
             </Button>
           </div>
         </div>
       </Card>
 
       <Card padding="none">
-        <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
+        <div className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900">Invoices</h3>
+            <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">Invoices</h3>
             <div className="flex items-center space-x-1 sm:space-x-2">
               <Button variant="outline" size="sm" icon={Download}>
                 <span className="hidden sm:inline">Export</span>
@@ -239,13 +240,13 @@ const InvoiceManagement: React.FC = () => {
           onEdit={(invoice) => console.log('Edit invoice:', invoice)}
         />
 
-        <div className="px-4 sm:px-6 py-4 border-t border-gray-200">
+        <div className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-t border-gray-200">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="text-xs sm:text-sm text-gray-700">
               Showing 1 to 5 of 1,247 results
             </div>
             <div className="flex items-center space-x-1 sm:space-x-2">
-              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">
+              <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50">
                 Previous
               </button>
               <button className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-blue-600 text-white rounded">

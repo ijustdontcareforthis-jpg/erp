@@ -1,81 +1,64 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import Dashboard from './pages/Dashboard';
-import InvoiceManagement from './pages/InvoiceManagement';
-import CompanySetup from './pages/CompanySetup';
-import EmployeeManagement from './pages/EmployeeManagement';
-import SupplierManagement from './pages/SupplierManagement';
-import InventoryManagement from './pages/InventoryManagement';
-import SalesManagement from './pages/SalesManagement';
-import Accounting from './pages/Accounting';
-import TaxManagement from './pages/TaxManagement';
-import Reports from './pages/Reports';
-import CoffeeDemo from './pages/CoffeeDemo';
-import './App.css';
+import React from 'react';
+import { X } from 'lucide-react';
+import Button from './Button';
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-    },
-  },
-});
-
-function App() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="flex min-h-screen bg-gray-50">
-          <Sidebar 
-            collapsed={sidebarCollapsed} 
-            isOpen={sidebarOpen}
-            onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
-            onClose={() => setSidebarOpen(false)}
-          />
-          <div className={`flex-1 flex flex-col transition-all duration-300 ${
-            sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
-          } ml-0`}>
-            <Header onMenuClick={() => setSidebarOpen(true)} />
-            <main className="flex-1 overflow-y-auto">
-              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/invoices" element={<InvoiceManagement />} />
-                  <Route path="/company-setup" element={<CompanySetup />} />
-                  <Route path="/employees" element={<EmployeeManagement />} />
-                  <Route path="/suppliers" element={<SupplierManagement />} />
-                  <Route path="/inventory" element={<InventoryManagement />} />
-                  <Route path="/sales" element={<SalesManagement />} />
-                  <Route path="/accounting" element={<Accounting />} />
-                  <Route path="/taxes" element={<TaxManagement />} />
-                  <Route path="/reports" element={<Reports />} />
-                  <Route path="/coffee-demo" element={<CoffeeDemo />} />
-                </Routes>
-              </div>
-            </main>
-          </div>
-          
-          {/* Mobile overlay */}
-          {sidebarOpen && (
-            <div 
-              className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
-              onClick={() => setSidebarOpen(false)}
-            />
-          )}
-        </div>
-      </Router>
-    </QueryClientProvider>
-  );
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  showCloseButton?: boolean;
 }
 
-export default App;
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  size = 'md',
+  showCloseButton = true
+}) => {
+  if (!isOpen) return null;
+
+  const sizeClasses = {
+    sm: 'max-w-md',
+    md: 'max-w-lg',
+    lg: 'max-w-2xl',
+    xl: 'max-w-4xl'
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 overflow-y-auto">
+      <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-4">
+        <div 
+          className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+              <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6">
+        />
+        
+        <div className={`inline-block w-full ${sizeClasses[size]} p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-lg`}>
+          <div className="flex items-center justify-between mb-4">
+          <div className={`flex-1 flex flex-col transition-all duration-300 ${
+            sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
+          }`}>
+            {showCloseButton && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onClose}
+                icon={X}
+                className="p-1"
+              />
+            )}
+          </div>
+          
+          <div>
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Modal;
